@@ -1,0 +1,65 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+struct Student{
+	string name1;
+	string group1;
+	double age1;
+	double music;
+	double drawing;
+	double crafting;
+};
+class Group{
+public:
+	vector <Student> students;
+	string name;
+	double get_average_age() {
+		double ta = 0;
+		for (const auto& student : students) {
+			ta += student.age1;
+		
+		}
+		return ta / students.size();
+	}
+	double get_average_score(){
+		double ts = 0;
+		for (const auto& student : students) {
+			ts += (student.music + student.drawing + student.crafting);
+		
+		}
+		return ts / students.size();
+	}
+};
+
+
+int main() {
+	Student st1{ "Ivan", "IU8-14",18,90,90,90 };
+	Student st2{ "Ivan2","IU8-14",19,90,90,68 };	
+	Student st3{ "Ivan3","IU8-14",20,90,45,45 };
+	Student st4{ "Ivan4","IU8-14",21,90,46,45 };
+	Student st5{ "Ivan5","IU8-14",1,90,68,45 };
+	Group gr;
+	gr.name = st1.group1;
+	gr.students.push_back(st1);
+	gr.students.push_back(st2);
+	gr.students.push_back(st3);
+	gr.students.push_back(st4);
+	gr.students.push_back(st5);
+	for (const auto& i : gr.students){
+		cout << i.name1 <<"'s average score = " << (i.crafting+i.drawing+i.music)/3.0 <<  endl;
+
+
+	}
+	cout << "Average score in " << gr.name << " = " << gr.get_average_score() << endl;
+	cout << "Average age in " << gr.name << " = " << gr.get_average_age();
+
+}
+
+
+
+
+
+
